@@ -55,7 +55,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-]
+] + CONFIG.get('installed_apps', [])
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -75,7 +75,8 @@ TEMPLATES = [
         'DIRS': [
             os.path.join(BASE_DIR, 'www', 'templates'),
             os.path.join(BASE_DIR, 'rest', 'templates'),
-        ],
+        ] + [os.path.join(DASE_DIR, x, 'templates')
+                for x in CONFIG.get('template_dirs', [])],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

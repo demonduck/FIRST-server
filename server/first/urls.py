@@ -17,10 +17,12 @@ from django.contrib import admin
 from django.conf.urls import handler404
 from django.conf.urls import include, url
 
+from first.settings import CONFIG
 handler404 = 'www.views.handler404'
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^api/', include('rest.urls')),
-    url(r'^', include('www.urls')),
-]
+] + [url(x[0], include(x[1]))
+        for x in CONFIG.get('url_patterns', []) if len(x) == 2
+] + [url(r'^', include('www.urls'))]

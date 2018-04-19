@@ -1,5 +1,6 @@
-from django.conf.urls import url
+from django.conf.urls import include, url
 
+from first.settings import CONFIG
 from . import views
 
 app_name = 'rest'
@@ -32,4 +33,4 @@ urlpatterns = [
         views.metadata_scan, name='metadata_scan'),
 
     url(r'^status$', views.status, name='status'),
-]
+] + [url(x[0], include(x[1])) for x in CONFIG.get('rest_modules', []) if len(x) == 2]
