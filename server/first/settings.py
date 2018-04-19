@@ -75,7 +75,7 @@ TEMPLATES = [
         'DIRS': [
             os.path.join(BASE_DIR, 'www', 'templates'),
             os.path.join(BASE_DIR, 'rest', 'templates'),
-        ] + [os.path.join(DASE_DIR, x, 'templates')
+        ] + [os.path.join(BASE_DIR, x, 'templates')
                 for x in CONFIG.get('template_dirs', [])],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -101,7 +101,7 @@ DATABASES = {
         'NAME': CONFIG.get('db_dbname', 'first_db'),
         'USER': CONFIG.get('db_user', 'root'),
         'PASSWORD': CONFIG.get('db_password', ''),
-        'HOST': CONFIG.get('db_host', 'localhost'),
+        'HOST': CONFIG.get('db_host', 'mysql'),
         'PORT': CONFIG.get('db_port', 3306)
     }
 }
@@ -141,6 +141,6 @@ USE_TZ = CONFIG.get('use_tz', True)
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = CONFIG.get('static_root', os.path.join(BASE_DIR, 'static'))
 
 STATIC_URL = CONFIG.get('static_url', '/static/')

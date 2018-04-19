@@ -24,7 +24,7 @@
     background-size: 30%;
   }
   #background-text{
-    /*display:none;*/
+    display:none;
   }
   .newcharactertalos {
     margin-top: -35px;
@@ -32,7 +32,7 @@
 }
 @media (max-width: 1200px) {
   #talos-guy, #background-text{
-    display:none;
+    /*display:none;*/
   }
   .navbar-nav > li > a {
     padding: 0 15px;
@@ -46,14 +46,22 @@
     padding: 40% 0;
   }
 }
+@media (max-height: 500px){
+  #main_content{
+    display:none;
+  }
+}
 @media (max-width: 991px) {
+  #main_content{
+    display:none;
+  }
   .talos_logo {
     display:none;
   }
-  .first_logo {
+  .first_logo{
     padding-top: 15px;
   }
-  #talos-guy, #background-text, .slotholder {
+  #talos-guy, #background-text, .slotholder{
     display:none;
   }
   .section-wrap,

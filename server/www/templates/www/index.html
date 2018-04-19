@@ -1,6 +1,18 @@
 {% extends 'www/base_site.html' %}
 {% load staticfiles %}
 
+{% block nav_block_links %}
+        <li>
+            <a href="#about">About</a>
+        </li>
+        <li>
+            <a href="#requirement">Requirements &amp; Installation</a>
+        </li>
+        <li>
+            <a href="#submit_engine">Submit Engine</a>
+        </li>
+{% endblock %}
+
 {% block content %}
             <section id="home">
                 <div class="rev_slider_wrapper">
@@ -168,4 +180,143 @@
                     </div>
                 </div>
             </section> <!-- end results-->
+
+
+            {% block quick-info %}
+            <section class="section-wrap pb-mdm-50 pb-50" id="requirement">
+                <div class="container-fluid">
+
+                    <div class="row heading">
+                        <div class="col-md-6 col-md-offset-3">
+                            <div class="wow slideInDown" data-wow-duration="1.2s"
+                                 data-wow-delay="0s">
+                                <h2 class="text-center bottom-line">Requirements &amp; Installation</h2>
+                                <p class="subheading text-center">
+                                    Implement the FIRST plugin today!
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="wow slideInLeft" data-wow-duration="1.2s"
+                             data-wow-delay="0s">
+                            <div class="col-lg-3 col-md-6 install-item">
+                                <div class="install-item-box icon-effect-1 icon-effect-1a text-center">
+                                    <a href="#">
+                                        <i class="icon icon-Star hi-icon"></i>
+                                    </a>
+                                    <h3>
+                                        Requirements
+                                    </h3>
+                                    <ul style="list-style: circle;">
+                                        <li>
+                                            IDA Pro 6.9 SP1
+                                        </li>
+                                        <li>
+                                            Python Requests (https://pypi.python.org/pypi/requests/)
+                                        </li>
+                                    </ul>
+
+
+                                </div>
+                            </div> <!-- end service item -->
+
+                            <div class="col-lg-3 col-md-6 install-item">
+                                <div class="install-item-box icon-effect-1 icon-effect-1a text-center">
+                                    <a href="#">
+                                        <i class="icon icon-Download hi-icon"></i>
+                                    </a>
+                                    <h3>
+                                        Download
+                                    </h3>
+                                    <p>
+                                        The IDA Pro plug-in can be downloaded from
+                                        <a target="_blank" href="https://github.com/vrtadmin/FIRST">
+                                            GitHub
+                                        </a>
+                                    </p>
+                                </div>
+                            </div> <!-- end service item -->
+
+                        </div>
+                        <div class="wow slideInRight" data-wow-duration="1.2s"
+                             data-wow-delay="0s">
+                            <div class="col-lg-3 col-md-6 install-item">
+                                <div class="install-item-box icon-effect-1 icon-effect-1a text-center">
+                                    <a href="#">
+                                        <i class="icon icon-Hourglass hi-icon"></i>
+                                    </a>
+                                    <h3>Install</h3>
+                                    <p>
+                                        For the most stable version of FIRST, get the plug-in from the master branch. For
+                                        the latest
+                                        <span style="display: none;" class="install_container">
+                                        (not stable) version of FIRST, get the plug-in from any of the
+                                        development branches.
+                                        </span>
+                                        <a href="#" class="install_more">
+                                            (more)
+                                        </a>
+                                    </p>
+                                    <p style="display: none;" class="install_container">
+                                        Once you have a copy of the plug-in, installing the plug-in is as simple as copying
+                                        the Python file into the plugins folder. For IDA Pro 6.9 installed on Windows this
+                                        folder can be found at: C:\Program Files (x86)\IDA 6.9\plugins
+                                        <a href="#" class="install_container">
+                                            (less)
+                                        </a>
+                                    </p>
+                                </div>
+                            </div> <!-- end service item -->
+
+                            <div class="col-lg-3 col-md-6 install-item">
+                                <div class="install-item-box icon-effect-1 icon-effect-1a text-center">
+                                    <a href="#">
+                                        <i class="icon icon-Notebook hi-icon"></i>
+                                    </a>
+                                    <h3>Documentation</h3>
+                                    <p>
+                                        Check out our Docs (<a href="http://first-server.readthedocs.io/en/latest/">Server</a> - <a href="http://first-plugin-ida.readthedocs.io/en/latest/">IDA Plugin</a>).
+                                    </p>
+                                </div>
+                            </div> <!-- end service item -->
+
+                        </div>
+
+                    </div>
+                </div>
+            </section> <!-- end services -->
+            {% endblock %}
+
+            {% block submit_engine %}
+            <section id="submit_engine" class="section-wrap process" style="background-color: #45738c;">
+
+                <div class="container">
+
+                    <div class="row heading">
+                        <div class="col-md-6 col-md-offset-3">
+                            <div class="wow slideInLeft" data-wow-duration="1.2s"
+                                 data-wow-delay="0s">
+                                <h2 class="text-center color-white bottom-line">Submit Your Own Engine</h2>
+                            </div>
+                            <div class="wow slideInRight" data-wow-duration="1.2s"
+                                 data-wow-delay="0s">
+                                <p class="subheading text-center color-white">Show Us What You Got!</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-xs-12 cta-button text-center wow slideInUp" data-wow-duration="1.2s"
+                             data-wow-delay="0s">
+                            <a href="#" class="btn btn-lg btn-color">Submit Engine</a>
+                        </div>
+
+                    </div>
+                </div>
+            </section> <!-- process -->
+            {% endblock %}
+
 {% endblock %}

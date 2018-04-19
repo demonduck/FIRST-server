@@ -21,7 +21,11 @@ else
 fi
 
 # Always run migrations
+/usr/bin/python /home/first/manage.py makemigrations
 /usr/bin/python /home/first/manage.py migrate
+
+# Collect static files
+/usr/bin/python /home/first/manage.py collectstatic
 
 # Finally, start up the apache service
 /usr/sbin/apache2ctl -D FOREGROUND
