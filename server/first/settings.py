@@ -22,6 +22,8 @@ try:
     config_data = json.load(file(FIRST_CONFIG_FILE))
     if type(config_data) == dict:
         CONFIG = config_data
+    for key, value in CONFIG.get('os.environ', {}).iteritems():
+        os.environ[key] = value
 except IOError as ioe:
     print '[1st] IOError: {}'.format(ioe)
 except ValueError as ve:

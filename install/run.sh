@@ -20,6 +20,21 @@ else
    echo "Using existing SSL certificate"
 fi
 
+# Look for any modules that have requirements to be installed
+for dir in /home/first/*/
+do
+    dir=${dir%*/}/install
+    echo $dir
+    if [ -d $dir ]; then
+        echo 'Dir Exists'
+        if [ -f $dir/requirements.sh ]; then
+            chmod +x $dir/requirements.sh
+            $dir/requirements.sh
+        fi
+        echo 'Finished'
+    fi
+done
+
 # Always run migrations
 /usr/bin/python /home/first/manage.py makemigrations
 /usr/bin/python /home/first/manage.py migrate
