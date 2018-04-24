@@ -57,6 +57,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_celery_results',
 ] + CONFIG.get('installed_apps', [])
 
 MIDDLEWARE = [
@@ -146,3 +147,7 @@ USE_TZ = CONFIG.get('use_tz', True)
 STATIC_ROOT = CONFIG.get('static_root', os.path.join(BASE_DIR, 'static'))
 
 STATIC_URL = CONFIG.get('static_url', '/static/')
+
+CELERY_BROKER_URL = "amqp://rabbitmq"
+CELERY_RESULT_BACKEND = "django-db"
+CELERY_ENABLE_UTC = True

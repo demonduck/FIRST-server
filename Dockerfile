@@ -1,7 +1,8 @@
-FROM ubuntu
+FROM ubuntu:16.04
+RUN apt-get clean
 RUN apt-get update
 RUN apt-get -y dist-upgrade
-RUN apt-get install -y python-pip libcapstone-dev mysql-client libmysqlclient-dev apache2 libapache2-mod-wsgi libapache2-mod-wsgi vim
+RUN apt-get install -y supervisor netcat python-pip libcapstone-dev mysql-client libmysqlclient-dev apache2 libapache2-mod-wsgi libapache2-mod-wsgi vim
 RUN pip install --upgrade pip
 COPY install/requirements.txt /tmp
 RUN pip install -r /tmp/requirements.txt && rm /tmp/requirements.txt
@@ -24,8 +25,19 @@ RUN /usr/sbin/a2ensite first
 RUN /usr/sbin/a2enmod ssl
 RUN /usr/sbin/a2enmod rewrite
 
+# Set up supervisor
+RUN mkdir -p /etc/supervisor/conf.d /var/log/supervisor
+COPY install/supervisor/supervisord.conf /etc/supervisor/supervisord.conf
+
+COPY install/supervisor/celery.conf /etc/supervisor/conf.d/celery.conf
+COPY install/supervisor/webserver.conf /etc/supervisor/conf.d/webserver.conf
+
+RUN mkdir /log
+
 COPY install/run.sh /usr/local/bin
 EXPOSE 80
 EXPOSE 443
-CMD ["/usr/local/bin/run.sh"]
 WORKDIR /home/first
+VOLUME /log
+
+ENTRYPOINT ["/usr/bin/supervisord", "-c", "/etc/supervisor/supervisord.conf"]
