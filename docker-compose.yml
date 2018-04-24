@@ -7,6 +7,7 @@ services:
          - 443:443
       depends_on:
          - mysql
+         - rabbitmq
       environment:
          - MYSQL_USER=root
          - MYSQL_PASSWORD=password12345
@@ -16,6 +17,7 @@ services:
          - GOOGLE_SECRET=/usr/local/etc/google_secret.json
       volumes:
           - ./data/ssl:/etc/apache2/ssl
+          - ./log:/log
       restart: always
 
    mysql:
@@ -28,3 +30,12 @@ services:
       volumes:
          - ./data/mysql:/var/lib/mysql
       restart: always
+
+   rabbitmq:
+      image: rabbitmq:3-management
+      restart: always
+      ports:
+         - "35672:5672"
+         - "15672:15672"
+      volumes:
+         - ./install/rabbitmq.config:/etc/rabbitmq/rabbitmq.config:ro
