@@ -16,6 +16,7 @@ services:
          - GOOGLE_SECRET=/usr/local/etc/google_secret.json
       volumes:
           - ./data/ssl:/etc/apache2/ssl
+          - ./log:/log
       restart: always
 
    mysql:

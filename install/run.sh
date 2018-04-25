@@ -1,5 +1,13 @@
 #!/bin/bash
 
+# Finally, make sure we have an SSL certificate in place
+if [ ! -e /etc/apache2/ssl/apache.crt ]; then
+   echo "Generating new SSL certificate"
+   openssl req -subj '/CN=example.com/O=First/C=US' -new -newkey rsa:4096 -sha256 -days 365 -nodes -x509 -keyout /etc/apache2/ssl/apache.key -out /etc/apache2/ssl/apache.crt
+else
+   echo "Using existing SSL certificate"
+fi
+
 # Wait for the MySQL service to become available
 while [ true ]; do
    echo "show databases" | mysql -h $MYSQL_HOST -u $MYSQL_USER --password=$MYSQL_PASSWORD &> /dev/null
@@ -12,26 +20,13 @@ while [ true ]; do
    fi
 done
 
-# Finally, make sure we have an SSL certificate in place
-if [ ! -e /etc/apache2/ssl/apache.crt ]; then
-   echo "Generating new SSL certificate"
-   openssl req -subj '/CN=example.com/O=First/C=US' -new -newkey rsa:4096 -sha256 -days 365 -nodes -x509 -keyout /etc/apache2/ssl/apache.key -out /etc/apache2/ssl/apache.crt
-else
-   echo "Using existing SSL certificate"
-fi
-
 # Look for any modules that have requirements to be installed
 for dir in /home/first/*/
 do
     dir=${dir%*/}/install
-    echo $dir
-    if [ -d $dir ]; then
-        echo 'Dir Exists'
-        if [ -f $dir/requirements.sh ]; then
-            chmod +x $dir/requirements.sh
-            $dir/requirements.sh
-        fi
-        echo 'Finished'
+    if [ -d $dir ] && [ -f $dir/requirements.sh ]; then
+        chmod +x $dir/requirements.sh
+        $dir/requirements.sh
     fi
 done
 
@@ -40,7 +35,7 @@ done
 /usr/bin/python /home/first/manage.py migrate
 
 # Collect static files
-/usr/bin/python /home/first/manage.py collectstatic
+/usr/bin/python /home/first/manage.py collectstatic --no-input
 
 # Finally, start up the apache service
 /usr/sbin/apache2ctl -D FOREGROUND
