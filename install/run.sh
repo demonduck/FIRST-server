@@ -38,4 +38,4 @@ done
 /usr/bin/python /home/first/manage.py collectstatic --no-input
 
  # Finally, start up the apache service
- /usr/sbin/apache2ctl -D FOREGROUND
+exec /usr/sbin/apache2ctl -D FOREGROUND

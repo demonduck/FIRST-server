@@ -146,3 +146,5 @@ USE_TZ = CONFIG.get('use_tz', True)
 STATIC_ROOT = CONFIG.get('static_root', os.path.join(BASE_DIR, 'static'))
 
 STATIC_URL = CONFIG.get('static_url', '/static/')
+
+MEDIA_ROOT = CONFIG.get('media_root', '/tmp')

@@ -29,7 +29,8 @@ RUN /usr/sbin/a2enmod rewrite
 RUN mkdir -p /etc/supervisor/conf.d /var/log/supervisor
 COPY install/supervisor/supervisord.conf /etc/supervisor/supervisord.conf
 
-COPY install/supervisor/webserver.conf /etc/supervisor/conf.d/webserver.conf
+COPY install/supervisor/*.conf /etc/supervisor/conf.d/
+RUN rm /etc/supervisor/conf.d/supervisord.conf
 
 RUN mkdir /log
 
