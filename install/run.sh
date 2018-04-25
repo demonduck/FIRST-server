@@ -37,5 +37,5 @@ done
 # Collect static files
 /usr/bin/python /home/first/manage.py collectstatic --no-input
 
-# Finally, start up the apache service
-/usr/sbin/apache2ctl -D FOREGROUND
+ # Finally, start up the apache service
+ /usr/sbin/apache2ctl -D FOREGROUND
