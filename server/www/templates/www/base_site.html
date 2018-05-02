@@ -33,7 +33,6 @@
         <link rel="apple-touch-icon" sizes="114x114" href="{% static 'www/img/first-icon-114x114.png' %}">
 
         <script src="https://use.fontawesome.com/4efc02f455.js"></script>
-        {% block javascripts %}{% endblock %}
 </head>
 
 <body data-spy="scroll" data-offset="60" data-target=".navbar" class="sidenav">
@@ -383,6 +382,8 @@
     <script type="text/javascript" src="{% static 'www/revolution/js/extensions/revolution.extension.navigation.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'www/revolution/js/extensions/revolution.extension.migration.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'www/revolution/js/extensions/revolution.extension.parallax.min.js' %}"></script>
+    {% block javascripts %}{% endblock %}
+    
 
     <script>
         $(document).ready(function ($) {
